@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Démarrer l'expérience</title>
+  </head>
+  <body>
+    <p>
+      Ouvrir la page index via JS permet de gérer les onglets par JS.
+      Ceci permet d'ouvrir une nouvelle page dans un nouvel onglet et de fermer l'ancien onglet pour libérer de la mémoire.
+      On isole ainsi les processus Chrome et on évite de subir des fuites mémoires.
+      L'expérience peut ainsi tourner toute une journée sans problème.
+    </p>
+    
+    <script>
+      window.open("/");
+    </script>
+  </body>
+</html>
