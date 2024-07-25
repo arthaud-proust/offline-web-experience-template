@@ -2,21 +2,28 @@ import { deleteSync } from "del";
 import gulp from "gulp";
 import zip from "gulp-zip";
 
-const makeBundle = () => gulp
-  .src(".bundlebase/**/*").pipe(gulp.dest("./bundle/"))
-  .src("dist/**/*").pipe(gulp.dest("./bundle/dist"));
+gulp.task(
+  'prefillBundle',
+  () => gulp.src(".bundlebase/**/*").pipe(gulp.dest("./bundle/"))
+);
 
-const zipBundle = () => gulp
-  .src("./bundle/**/*")
-  .pipe(zip("bundle.zip"))
-  .pipe(gulp.dest("./"));
+gulp.task(
+  'copyDistInBundle',
+  () => gulp.src("dist/**/*").pipe(gulp.dest("./bundle/dist"))
+);
 
-const deleteBundle = async () => deleteSync("bundle");
+gulp.task(
+  "zipBundle",
+  () => gulp
+    .src("./bundle/**/*")
+    .pipe(zip("bundle.zip"))
+    .pipe(gulp.dest("./"))
+);
 
-gulp.task("bundle", makeBundle);
+gulp.task(
+  "deleteBundle",
+  async () => deleteSync("bundle")
+);
 
-gulp.task("bundle:zip", async () => {
-  makeBundle();
-  zipBundle();
-  await deleteBundle();
-});
+gulp.task("bundle", gulp.series(["prefillBundle", "copyDistInBundle"]));
+gulp.task("bundle:zip", gulp.series(["bundle", "zipBundle", "deleteBundle"]));
