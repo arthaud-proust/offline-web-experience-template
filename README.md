@@ -6,6 +6,9 @@ Ce template permet de réaliser une expérience web totalement portable et hors-
 
 Vous développez un site statique en JS/TS/HTML/CSS, il est compilé avec Vite, puis empaqueté avec un navigateur et un serveur web pour qu'il soit autonome sur le pc/mac de production.
 
+>[!NOTE]
+> C'est un peu l'équivalent d'une app avec ElectronJs. Je vais essayer un template avec Electron, qui sera peut-être plus simple
+
 ## Spécificités
 
 ### Le bundle
